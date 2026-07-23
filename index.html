@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Warung GENZ</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PWA -->
+
+    <link rel="manifest" href="manifest.json">
+
+        <meta name="theme-color" content="#16a34a">
+
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-store"></i>
+            <span>Warung GENZ</span>
+        </div>
+
+        <nav>
+
+            <a href="#" class="menu active" onclick="showPage('dashboard')">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#" class="menu" onclick="showPage('transaksi')">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Transaksi</span>
+            </a>
+
+            <a href="#" class="menu" onclick="showPage('produk')">
+                <i class="fa-solid fa-box"></i>
+                <span>Produk</span>
+            </a>
+
+            <a href="#" class="menu" onclick="showPage('stok')">
+                <i class="fa-solid fa-warehouse"></i>
+                <span>Stok</span>
+            </a>
+
+            <a href="#" class="menu" onclick="showPage('laporan')">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span>Laporan</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="#" class="menu">
+                <i class="fa-solid fa-gear"></i>
+                <span>Pengaturan</span>
+            </a>
+
+            <a href="#" class="menu">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Keluar</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- KONTEN UTAMA -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="header-left">
+
+                <button
+                    id="menuButton"
+                    class="menu-button"
+                    type="button"
+                    onclick="toggleSidebar()"
+                    >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h2 id="page-title">Dashboard</h2>
+
+            </div>
+
+            <div class="user-profile">
+
+                <div class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div>
+                    <strong>Pemilik Warung</strong>
+                    <small>Admin</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page active-page">
+
+            <div class="welcome">
+
+                <div>
+                    <h1>Selamat Datang 👋</h1>
+                    <p>Kelola warung Anda dengan lebih mudah.</p>
+                </div>
+
+                <i class="fa-solid fa-store"></i>
+
+            </div>
+
+            <!-- KARTU STATISTIK -->
+
+<div class="stats-container">
+
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+            <i class="fa-solid fa-money-bill-wave"></i>
+        </div>
+
+        <div>
+            <p>Penjualan Hari Ini</p>
+
+            <h2 id="todaySales">
+                Rp 0
+            </h2>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+            <i class="fa-solid fa-receipt"></i>
+        </div>
+
+        <div>
+            <p>Total Transaksi</p>
+
+            <h2 id="totalTransactions">
+                0
+            </h2>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon orange">
+            <i class="fa-solid fa-box"></i>
+        </div>
+
+        <div>
+            <p>Total Produk</p>
+
+            <h2 id="totalProducts">
+                0
+            </h2>
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon red">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+
+        <div>
+            <p>Stok Menipis</p>
+
+            <h2 id="lowStock">
+                0
+            </h2>
+        </div>
+
+    </div>
+
+</div>
+            <!-- MENU CEPAT -->
+
+            <div class="section-title">
+
+                <h2>Akses Cepat</h2>
+
+            </div>
+
+
+            <div class="quick-menu">
+
+                <div class="quick-card" onclick="showPage('transaksi')">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <h3>Mulai Transaksi</h3>
+
+                    <p>Jual produk kepada pelanggan</p>
+
+                </div>
+
+
+                <div class="quick-card" onclick="showPage('produk')">
+
+                    <i class="fa-solid fa-box-open"></i>
+
+                    <h3>Kelola Produk</h3>
+
+                    <p>Tambah dan edit produk</p>
+
+                </div>
+
+
+                <div class="quick-card" onclick="showPage('stok')">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                    <h3>Kelola Stok</h3>
+
+                    <p>Periksa stok barang</p>
+
+                </div>
+
+
+                <div class="quick-card" onclick="showPage('laporan')">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    <h3>Lihat Laporan</h3>
+
+                    <p>Periksa laporan penjualan</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- TRANSAKSI TERBARU -->
+
+            <div class="recent-section">
+
+                <div class="section-title">
+
+                     <h2>Transaksi Terbaru</h2>
+
+                        <button onclick="showPage('transaksi')">
+
+                             Lihat Semua
+
+                        </button>
+
+            </div>
+
+    <div id="recentTransactions">
+
+        <!-- Data transaksi muncul melalui JavaScript -->
+
+    </div>
+
+</div>
+
+
+                <div id="recentTransactions">
+
+                     <!-- Transaksi terbaru akan muncul di sini -->
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TRANSAKSI ================= -->
+
+        <!-- ================= TRANSAKSI ================= -->
+
+<section id="transaksi" class="page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Transaksi Kasir</h1>
+            <p>Buat transaksi penjualan baru</p>
+        </div>
+
+        <button class="primary-button" onclick="clearCart()">
+
+            <i class="fa-solid fa-rotate-left"></i>
+
+            Transaksi Baru
+
+        </button>
+
+    </div>
+
+
+    <div class="cashier-container">
+
+
+        <!-- BAGIAN PRODUK -->
+
+        <div class="cashier-header">
+
+    <h2>Pilih Produk</h2>
+
+    <div class="cashier-actions">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="cashierSearch"
+                placeholder="Cari produk..."
+                onkeyup="displayCashierProducts()"
+            >
+
+        </div>
+
+
+        <!-- TOMBOL SCAN BARCODE -->
+
+        <button
+            class="scan-button"
+            onclick="startBarcodeScanner()"
+        >
+
+            <i class="fa-solid fa-barcode"></i>
+
+            Scan Barcode
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- AREA KAMERA BARCODE -->
+
+<div
+    id="scannerContainer"
+    class="scanner-container"
+>
+
+    <div id="reader"></div>
+
+
+    <button
+        onclick="stopBarcodeScanner()"
+        class="stop-scan-button"
+    >
+
+        Tutup Kamera
+
+    </button>
+
+</div>
+
+<!-- BAGIAN BAWAHNYA -->
+
+<div
+    id="cashierProductList"
+    class="cashier-product-list"
+>
+
+    <!-- Produk akan muncul di sini -->
+
+</div>
+
+
+<div
+    id="emptyCashierProduct"
+    class="empty-state"
+>
+
+    <i class="fa-solid fa-box-open"></i>
+
+    <h3>Belum Ada Produk</h3>
+
+    <p>
+        Tambahkan produk terlebih dahulu melalui menu Produk.
+    </p>
+
+</div>
+
+        <!-- BAGIAN KERANJANG -->
+
+        <div class="cart-container">
+
+            <div class="cart-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    Keranjang
+
+                </h2>
+
+                <span id="cartCount">0 item</span>
+
+            </div>
+
+
+            <div id="cartItems" class="cart-items">
+
+                <div class="empty-cart">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <p>Keranjang masih kosong</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="cart-summary">
+
+                <div class="summary-row">
+
+                    <span>Total Item</span>
+
+                    <strong id="totalItems">0</strong>
+
+                </div>
+
+
+                <div class="summary-row total-row">
+
+                    <span>Total</span>
+
+                    <strong id="cartTotal">Rp 0</strong>
+
+                </div>
+
+
+                <div class="payment-group">
+
+                    <label>Uang Dibayar</label>
+
+                    <input
+                        type="number"
+                        id="paymentAmount"
+                        placeholder="Masukkan jumlah uang"
+                        oninput="calculateChange()"
+                    >
+
+                </div>
+
+
+                <div class="change-box">
+
+                    <span>Kembalian</span>
+
+                    <strong id="changeAmount">Rp 0</strong>
+
+                </div>
+
+
+                <button
+                    class="checkout-button"
+                    onclick="completeTransaction()"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Selesaikan Transaksi
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- ================= PRODUK ================= -->
+
+        <!-- ================= PRODUK ================= -->
+
+<section id="produk" class="page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Produk</h1>
+            <p>Kelola data produk warung</p>
+        </div>
+
+        <button class="primary-button" onclick="openProductModal()">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Tambah Produk
+
+        </button>
+
+    </div>
+
+
+    <!-- SEARCH PRODUK -->
+
+    <div class="product-toolbar">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input 
+                type="text"
+                id="searchProduct"
+                placeholder="Cari nama produk..."
+                onkeyup="displayProducts()"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- TABEL PRODUK -->
+
+    <div class="product-table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>No</th>
+
+                    <th>Nama Produk</th>
+
+                    <th>Kategori</th>
+
+                    <th>Harga Beli</th>
+
+                    <th>Harga Jual</th>
+
+                    <th>Stok</th>
+
+                    <th>Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="productTable">
+
+                <!-- Data produk akan muncul di sini -->
+
+            </tbody>
+
+        </table>
+
+
+        <!-- Jika belum ada produk -->
+
+        <div id="emptyProduct" class="empty-state">
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <h3>Belum Ada Produk</h3>
+
+            <p>Silakan tambahkan produk terlebih dahulu.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MODAL TAMBAH PRODUK ================= -->
+
+<div id="productModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">Tambah Produk</h2>
+
+            <button onclick="closeProductModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="productForm">
+
+            <input type="hidden" id="editProductIndex">
+
+
+            <div class="form-group">
+
+                <label>Nama Produk</label>
+
+                <input 
+                    type="text"
+                    id="productName"
+                    placeholder="Contoh: Indomie Goreng"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Barcode Produk</label>
+
+                     <input
+                        type="text"
+                        id="productBarcode"
+                        placeholder="Masukkan nomor barcode"
+                        >
+
+             </div>
+
+
+            <div class="form-group">
+
+                <label>Kategori</label>
+
+                <select id="productCategory" required>
+
+                    <option value="">Pilih Kategori</option>
+
+                    <option value="Sembako">Sembako</option>
+
+                    <option value="Minuman">Minuman</option>
+
+                    <option value="Makanan">Makanan</option>
+
+                    <option value="Rokok">Rokok</option>
+
+                    <option value="Lainnya">Lainnya</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Harga Beli</label>
+
+                    <input 
+                        type="number"
+                        id="buyPrice"
+                        placeholder="0"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Harga Jual</label>
+
+                    <input 
+                        type="number"
+                        id="sellPrice"
+                        placeholder="0"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Stok</label>
+
+                <input 
+                    type="number"
+                    id="productStock"
+                    placeholder="0"
+                    required
+                >
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button 
+                    type="button"
+                    class="cancel-button"
+                    onclick="closeProductModal()"
+                >
+
+                    Batal
+
+                </button>
+
+
+                <button 
+                    type="submit"
+                    class="primary-button"
+                >
+
+                    Simpan Produk
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+        <!-- ================= STOK ================= -->
+
+<section id="stok" class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Stok Barang</h1>
+
+            <p>Kelola dan pantau persediaan barang</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- RINGKASAN STOK -->
+
+    <div class="stock-summary">
+
+
+        <div class="stock-summary-card">
+
+            <div class="stock-summary-icon blue">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+            </div>
+
+            <div>
+
+                <p>Total Produk</p>
+
+                <h2 id="stockTotalProducts">0</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stock-summary-card">
+
+            <div class="stock-summary-icon green">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <p>Stok Aman</p>
+
+                <h2 id="stockSafe">0</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stock-summary-card">
+
+            <div class="stock-summary-icon red">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+
+            <div>
+
+                <p>Stok Menipis</p>
+
+                <h2 id="stockLow">0</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stock-summary-card">
+
+            <div class="stock-summary-icon orange">
+
+                <i class="fa-solid fa-ban"></i>
+
+            </div>
+
+            <div>
+
+                <p>Stok Habis</p>
+
+                <h2 id="stockEmpty">0</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH STOK -->
+
+    <div class="stock-toolbar">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+
+                type="text"
+
+                id="stockSearch"
+
+                placeholder="Cari produk..."
+
+                onkeyup="displayStock()"
+
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- TABEL STOK -->
+
+    <div class="stock-table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>No</th>
+
+                    <th>Nama Produk</th>
+
+                    <th>Kategori</th>
+
+                    <th>Harga Jual</th>
+
+                    <th>Stok</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="stockTable">
+
+                <!-- Data stok muncul di sini -->
+
+            </tbody>
+
+        </table>
+
+
+        <div id="emptyStock" class="empty-state">
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <h3>Belum Ada Data Stok</h3>
+
+            <p>
+
+                Tambahkan produk terlebih dahulu melalui menu Produk.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- ================= LAPORAN ================= -->
+
+<section id="laporan" class="page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Laporan Penjualan</h1>
+            <p>Lihat ringkasan penjualan dan keuntungan</p>
+        </div>
+
+        <select
+            id="reportFilter"
+            class="report-filter"
+            onchange="updateReport()"
+        >
+
+            <option value="today">
+                Hari Ini
+            </option>
+
+            <option value="7days">
+                7 Hari Terakhir
+            </option>
+
+            <option value="30days">
+                30 Hari Terakhir
+            </option>
+
+            <option value="all">
+                Semua Transaksi
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- RINGKASAN LAPORAN -->
+
+    <div class="report-stats">
+
+
+        <div class="report-card">
+
+            <div class="report-icon green">
+
+                <i class="fa-solid fa-money-bill-wave"></i>
+
+            </div>
+
+            <div>
+
+                <p>Total Penjualan</p>
+
+                <h2 id="reportSales">
+                    Rp 0
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-card">
+
+            <div class="report-icon blue">
+
+                <i class="fa-solid fa-receipt"></i>
+
+            </div>
+
+            <div>
+
+                <p>Total Transaksi</p>
+
+                <h2 id="reportTransactions">
+                    0
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-card">
+
+            <div class="report-icon orange">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+            <div>
+
+                <p>Total Keuntungan</p>
+
+                <h2 id="reportProfit">
+                    Rp 0
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="report-card">
+
+            <div class="report-icon purple">
+
+                <i class="fa-solid fa-box"></i>
+
+            </div>
+
+            <div>
+
+                <p>Produk Terjual</p>
+
+                <h2 id="reportItems">
+                    0
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIWAYAT TRANSAKSI -->
+
+    <div class="report-table-container">
+
+        <div class="section-title">
+
+            <h2>Riwayat Transaksi</h2>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>No</th>
+
+                        <th>ID Transaksi</th>
+
+                        <th>Tanggal</th>
+
+                        <th>Jumlah Item</th>
+
+                        <th>Total</th>
+
+                        <th>Keuntungan</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="reportTable">
+
+                    <!-- Data laporan -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div
+            id="emptyReport"
+            class="empty-state"
+        >
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <h3>Belum Ada Transaksi</h3>
+
+            <p>
+                Data laporan akan muncul setelah transaksi dilakukan.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <!-- ===============================
+     MODAL STRUK
+================================ -->
+
+<div id="receiptModal" class="receipt-modal">
+
+    <div class="receipt-content">
+
+        <div class="receipt-header">
+
+            <h2>Struk Transaksi</h2>
+
+            <button onclick="closeReceipt()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- ISI STRUK -->
+
+        <div id="receipt">
+
+            <div class="receipt-shop">
+
+                <i class="fa-solid fa-store"></i>
+
+                <h2>WARUNG GENZ</h2>
+
+                <p>Warung Sembako Anda</p>
+
+            </div>
+
+
+            <div class="receipt-line"></div>
+
+
+            <div id="receiptInfo">
+
+                <!-- Informasi transaksi -->
+
+            </div>
+
+
+            <div class="receipt-line"></div>
+
+
+            <div id="receiptItems">
+
+                <!-- Produk transaksi -->
+
+            </div>
+
+
+            <div class="receipt-line"></div>
+
+
+            <div class="receipt-total">
+
+                <!-- Total pembayaran -->
+
+            </div>
+
+
+            <div class="receipt-footer">
+
+                <p>Terima kasih telah berbelanja</p>
+
+                <p>Semoga datang kembali 😊</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="receipt-actions">
+
+            <button
+                class="cancel-button"
+                onclick="closeReceipt()"
+            >
+
+                Tutup
+
+            </button>
+
+
+            <button
+                class="primary-button"
+                onclick="printReceipt()"
+            >
+
+                <i class="fa-solid fa-print"></i>
+
+                Cetak Struk
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+    
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
