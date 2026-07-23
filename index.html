@@ -297,9 +297,6 @@
 
         </section>
 
-
-        <!-- ================= TRANSAKSI ================= -->
-
         <!-- ================= TRANSAKSI ================= -->
 
 <section id="transaksi" class="page">
@@ -350,20 +347,23 @@
         <!-- TOMBOL SCAN BARCODE -->
 
         <button
-            class="scan-button"
-            onclick="startBarcodeScanner()"
-        >
-
-            <i class="fa-solid fa-barcode"></i>
-
-            Scan Barcode
-
-        </button>
-
+    id="scanBarcodeButton"
+    type="button"
+    onclick="startBarcodeScanner()"
+>
+    <i class="fa-solid fa-barcode"></i>
+    Scan Barcode
+</button>
     </div>
 
 </div>
 
+<video
+    id="scannerVideo"
+    autoplay
+    playsinline
+    style="display: none; width: 100%;"
+></video>
 
 <!-- AREA KAMERA BARCODE -->
 
@@ -1242,10 +1242,9 @@
 
 </div>
     
-    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
     <script src="script.js"></script>
-
 </body>
 
 </html>

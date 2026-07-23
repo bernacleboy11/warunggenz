@@ -2302,19 +2302,43 @@ if ("serviceWorker" in navigator) {
 // BARCODE SCANNER
 // ===============================
 
-let html5QrCode;
+let html5QrCode = null;
 
 
 function startBarcodeScanner() {
 
     const scannerContainer =
-        document.getElementById(
-            "scannerContainer"
+        document.getElementById("scannerContainer");
+
+    const reader =
+        document.getElementById("reader");
+
+
+    if (!scannerContainer || !reader) {
+
+        alert("Area kamera tidak ditemukan!");
+
+        return;
+
+    }
+
+
+    if (typeof Html5Qrcode === "undefined") {
+
+        alert(
+            "Library barcode belum dimuat!"
         );
+
+        return;
+
+    }
 
 
     scannerContainer.style.display =
         "block";
+
+
+    reader.innerHTML = "";
 
 
     html5QrCode =
@@ -2339,17 +2363,20 @@ function startBarcodeScanner() {
 
         function(decodedText) {
 
+
             findProductByBarcode(
                 decodedText
             );
 
+
             stopBarcodeScanner();
+
 
         },
 
         function(errorMessage) {
 
-            // Abaikan error scan sementara
+            // Abaikan error pembacaan sementara
 
         }
 
@@ -2357,13 +2384,132 @@ function startBarcodeScanner() {
 
     .catch(function(error) {
 
-        alert(
-            "Kamera tidak dapat dibuka."
+
+        console.error(
+            "Kamera gagal dibuka:",
+            error
         );
 
-        console.error(error);
+
+        alert(
+            "Kamera tidak dapat dibuka.\n\n" +
+            error.message
+        );
+
 
     });
+
+}
+
+
+function stopBarcodeScanner() {
+
+
+    const scannerContainer =
+        document.getElementById(
+            "scannerContainer"
+        );
+
+
+    if (html5QrCode) {
+
+
+        html5QrCode.stop()
+
+            .then(function() {
+
+
+                html5QrCode.clear();
+
+
+                html5QrCode =
+                    null;
+
+
+            })
+
+            .catch(function(error) {
+
+
+                console.log(error);
+
+
+            });
+
+
+    }
+
+
+    scannerContainer.style.display =
+        "none";
+
+
+}
+
+
+function findProductByBarcode(
+    barcode
+) {
+
+
+    const product =
+        products.find(function(product) {
+
+
+            return product.barcode === barcode;
+
+
+        });
+
+
+    if (!product) {
+
+
+        alert(
+
+            "Produk dengan barcode " +
+            barcode +
+            " tidak ditemukan!"
+
+        );
+
+
+        return;
+
+
+    }
+
+
+    addToCart(product);
+
+
+}
+
+
+async function stopBarcodeScanner() {
+
+    const scannerContainer =
+        document.getElementById("scannerContainer");
+
+    if (html5QrCode) {
+
+        try {
+
+            await html5QrCode.stop();
+
+            html5QrCode.clear();
+
+        } catch (error) {
+
+            console.log("Scanner sudah berhenti.");
+
+        }
+
+        html5QrCode = null;
+
+    }
+
+    scannerContainer.style.display = "none";
 
 }
 
@@ -2432,3 +2578,37 @@ function findProductByBarcode(
     addToCart(product);
 
 }
+
+async function openScanner() {
+
+    const video =
+        document.getElementById("scannerVideo");
+
+    const stream =
+        await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: "environment"
+            }
+        });
+
+    video.srcObject = stream;
+
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const scanButton =
+        document.getElementById("scanBarcodeButton");
+
+    if (!scanButton) {
+        console.error("Tombol Scan Barcode tidak ditemukan!");
+        return;
+    }
+
+    scanButton.addEventListener("click", function () {
+
+        alert("Tombol Scan Barcode berhasil diklik!");
+
+    });
+
+});
