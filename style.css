@@ -2569,7 +2569,71 @@ td {
 #reader video {
     width: 100% !important;
     height: auto !important;
-    display: block !important;
+    display: block !importanttutup;
+}
+
+/* ===============================
+   PRODUCT ACTIONS
+================================ */
+
+.product-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.secondary-button {
+
+    border: none;
+
+    background: #e5e7eb;
+
+    color: #374151;
+
+    padding: 13px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+}
+
+
+.secondary-button:hover {
+
+    background: #d1d5db;
+
+}
+
+
+@media (max-width: 600px) {
+
+    .product-actions {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .product-actions button {
+
+        width: 100%;
+
+    }
+
 }
 
 

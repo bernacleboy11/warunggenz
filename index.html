@@ -501,9 +501,6 @@
 
 </section>
 
-
-        <!-- ================= PRODUK ================= -->
-
         <!-- ================= PRODUK ================= -->
 
 <section id="produk" class="page">
@@ -522,6 +519,37 @@
             Tambah Produk
 
         </button>
+
+        <button
+            class="primary-button"
+            onclick="exportData()"
+            >
+
+            <i class="fa-solid fa-download"></i>
+
+        Export Data
+
+        </button>
+
+        <button
+        class="secondary-button"
+        onclick="document.getElementById('importFile').click()"
+    >
+
+        <i class="fa-solid fa-upload"></i>
+
+        Import Data
+
+    </button>
+
+
+    <input
+        type="file"
+        id="importFile"
+        accept=".json"
+        style="display: none;"
+        onchange="importData(event)"
+    >
 
     </div>
 

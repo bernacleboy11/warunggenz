@@ -2306,3 +2306,258 @@ async function stopBarcodeScanner() {
     }
 
 }
+
+// ===============================
+// EXPORT DATA
+// ===============================
+
+function exportData() {
+
+    const data = {
+
+        products: products,
+
+        transactions: transactions
+
+    };
+
+
+    const dataString =
+        JSON.stringify(data, null, 2);
+
+
+    const blob =
+        new Blob(
+
+            [dataString],
+
+            {
+                type: "application/json"
+            }
+
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+
+    link.download =
+        "backup-warung-genz.json";
+
+
+    link.click();
+
+
+    URL.revokeObjectURL(url);
+
+
+    alert(
+        "Data berhasil diekspor!"
+    );
+
+}
+
+// ===============================
+// EXPORT DATA
+// ===============================
+
+function exportData() {
+
+    const backupData = {
+
+        products: products,
+
+        transactions: transactions,
+
+        exportDate: new Date().toISOString()
+
+    };
+
+
+    const dataString =
+        JSON.stringify(backupData, null, 2);
+
+
+    const blob =
+        new Blob(
+
+            [dataString],
+
+            {
+                type: "application/json"
+            }
+
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+
+    link.download =
+        "backup-warung-genz.json";
+
+
+    document.body.appendChild(link);
+
+
+    link.click();
+
+
+    document.body.removeChild(link);
+
+
+    URL.revokeObjectURL(url);
+
+
+    alert(
+        "Data berhasil diekspor!"
+    );
+
+}
+
+
+// ===============================
+// IMPORT DATA
+// ===============================
+
+function importData(event) {
+
+    const file =
+        event.target.files[0];
+
+
+    if (!file) {
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(event) {
+
+        try {
+
+            const backupData =
+                JSON.parse(event.target.result);
+
+
+            if (
+
+                !backupData.products ||
+
+                !backupData.transactions
+
+            ) {
+
+                alert(
+                    "File backup tidak valid!"
+                );
+
+                return;
+
+            }
+
+
+            const confirmImport =
+                confirm(
+
+                    "Data lama di perangkat ini akan diganti dengan data backup. Lanjutkan?"
+
+                );
+
+
+            if (!confirmImport) {
+
+                return;
+
+            }
+
+
+            // Masukkan data backup
+
+            products =
+                backupData.products;
+
+
+            transactions =
+                backupData.transactions;
+
+
+            // Simpan ke perangkat
+
+            localStorage.setItem(
+
+                "products",
+
+                JSON.stringify(products)
+
+            );
+
+
+            localStorage.setItem(
+
+                "transactions",
+
+                JSON.stringify(transactions)
+
+            );
+
+
+            // Perbarui tampilan
+
+            displayProducts();
+
+            displayCashierProducts();
+
+            updateDashboard();
+
+
+            alert(
+                "Data berhasil diimport!"
+            );
+
+
+        }
+
+        catch (error) {
+
+            alert(
+                "File backup tidak dapat dibaca!"
+            );
+
+
+            console.error(error);
+
+        }
+
+    };
+
+
+    reader.readAsText(file);
+
+
+    // Reset input file
+
+    event.target.value = "";
+
+}
