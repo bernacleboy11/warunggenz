@@ -512,36 +512,31 @@
             <p>Kelola data produk warung</p>
         </div>
 
-        <button class="primary-button" onclick="openProductModal()">
+        <div class="product-actions">
 
-            <i class="fa-solid fa-plus"></i>
-
-            Tambah Produk
-
-        </button>
-
-        <button
-            class="primary-button"
-            onclick="exportData()"
-            >
-
-            <i class="fa-solid fa-download"></i>
-
-        Export Data
-
-        </button>
-
-        <button
-        class="secondary-button"
-        onclick="document.getElementById('importFile').click()"
+    <button
+        class="primary-button"
+        onclick="openProductModal()"
     >
-
-        <i class="fa-solid fa-upload"></i>
-
-        Import Data
-
+        <i class="fa-solid fa-plus"></i>
+        Tambah Produk
     </button>
 
+    <button
+        class="primary-button"
+        onclick="exportData()"
+    >
+        <i class="fa-solid fa-download"></i>
+        Export Data
+    </button>
+
+    <button
+        class="primary-button"
+        onclick="document.getElementById('importFile').click()"
+    >
+        <i class="fa-solid fa-upload"></i>
+        Import Data
+    </button>
 
     <input
         type="file"
@@ -550,6 +545,8 @@
         style="display: none;"
         onchange="importData(event)"
     >
+
+</div>
 
     </div>
 
