@@ -348,6 +348,7 @@
 
         <button
     id="scanBarcodeButton"
+    class="scan-button"
     type="button"
     onclick="startBarcodeScanner()"
 >
@@ -372,11 +373,12 @@
     <div id="reader"></div>
 
     <button
-        type="button"
-        onclick="stopBarcodeScanner()"
-    >
-        Tutup Kamera
-    </button>
+    class="stop-scan-button"
+    onclick="stopBarcodeScanner()"
+>
+    <i class="fa-solid fa-xmark"></i>
+    Tutup Kamera
+</button>
 
 </div>
 
@@ -469,6 +471,38 @@
                         placeholder="Masukkan jumlah uang"
                         oninput="calculateChange()"
                     >
+
+                    <div class="quick-payment-buttons">
+
+    <button
+        type="button"
+        onclick="setQuickPayment(10000)"
+    >
+        Rp 10.000
+    </button>
+
+    <button
+        type="button"
+        onclick="setQuickPayment(20000)"
+    >
+        Rp 20.000
+    </button>
+
+    <button
+        type="button"
+        onclick="setQuickPayment(50000)"
+    >
+        Rp 50.000
+    </button>
+
+    <button
+        type="button"
+        onclick="setQuickPayment(100000)"
+    >
+        Rp 100.000
+    </button>
+
+</div>
 
                 </div>
 

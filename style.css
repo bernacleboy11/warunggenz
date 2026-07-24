@@ -691,14 +691,6 @@ nav {
 
 @media (max-width: 768px) {
 
-
-    .sidebar {
-
-        left: -250px;
-
-    }
-
-
     .sidebar.show {
 
         left: 0;
@@ -2569,7 +2561,7 @@ td {
 #reader video {
     width: 100% !important;
     height: auto !important;
-    display: block !importanttutup;
+    display: block !important;
 }
 
 /* ===============================
@@ -2587,33 +2579,6 @@ td {
     flex-wrap: wrap;
 
 }
-
-
-.secondary-button {
-
-    border: none;
-
-    background: #e5e7eb;
-
-    color: #374151;
-
-    padding: 13px 20px;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-}
-
-
-.secondary-button:hover {
-
-    background: #d1d5db;
-
-}
-
 
 @media (max-width: 600px) {
 
@@ -2636,4 +2601,42 @@ td {
 
 }
 
+.quick-payment-buttons {
 
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-top: 10px;
+
+}
+
+
+.quick-payment-buttons button {
+
+    padding: 8px 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    background:  #16a34a;
+
+    cursor: pointer;
+
+    color: white;
+
+}
+
+
+.quick-payment-buttons button:hover {
+
+    background: #15803d;
+
+}

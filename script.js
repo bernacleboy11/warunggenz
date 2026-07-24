@@ -626,8 +626,9 @@ function displayCashierProducts() {
 
 function addToCart(product) {
 
+    // Pastikan stok tersedia
 
-    if (product.stock <= 0) {
+    if (!product.stock || product.stock <= 0) {
 
         alert("Stok produk ini habis!");
 
@@ -636,17 +637,26 @@ function addToCart(product) {
     }
 
 
-    const existingProduct = cart.find(function(item) {
+    const existingProduct =
+        cart.find(function(item) {
 
-        return item.name === product.name;
+            return item.name === product.name;
 
-    });
+        });
 
+
+    // Jika produk sudah ada di keranjang
 
     if (existingProduct) {
 
 
-        if (existingProduct.quantity < product.stock) {
+        if (
+
+            existingProduct.quantity <
+
+            product.stock
+
+        ) {
 
             existingProduct.quantity++;
 
@@ -654,12 +664,20 @@ function addToCart(product) {
 
         else {
 
-            alert("Jumlah melebihi stok yang tersedia!");
+            alert(
+
+                "Jumlah melebihi stok yang tersedia!"
+
+            );
+
+            return;
 
         }
 
     }
 
+
+    // Jika produk belum ada di keranjang
 
     else {
 
@@ -681,8 +699,6 @@ function addToCart(product) {
     displayCart();
 
 }
-
-
 // ===============================
 // TAMPILKAN KERANJANG
 // ===============================
@@ -861,21 +877,38 @@ function displayCart() {
 
 function increaseQuantity(index) {
 
-
     const item = cart[index];
 
 
-    if (item.quantity < item.stock) {
+    const product =
+        products.find(function(product) {
 
-        item.quantity++;
+            return product.name === item.name;
+
+        });
+
+
+    if (!product) {
+
+        alert("Produk tidak ditemukan!");
+
+        return;
 
     }
 
-    else {
 
-        alert("Jumlah melebihi stok!");
+    if (item.quantity >= product.stock) {
+
+        alert(
+            "Jumlah melebihi stok yang tersedia!"
+        );
+
+        return;
 
     }
+
+
+    item.quantity++;
 
 
     displayCart();
@@ -889,10 +922,12 @@ function increaseQuantity(index) {
 
 function decreaseQuantity(index) {
 
+    const item = cart[index];
 
-    if (cart[index].quantity > 1) {
 
-        cart[index].quantity--;
+    if (item.quantity > 1) {
+
+        item.quantity--;
 
     }
 
@@ -927,13 +962,16 @@ function removeFromCart(index) {
 
 function calculateChange() {
 
+    const paymentInput =
+        document.getElementById("paymentAmount");
+
+
+    const changeAmount =
+        document.getElementById("changeAmount");
+
 
     const payment =
-        Number(
-
-            document.getElementById("paymentAmount").value
-
-        );
+        Number(paymentInput.value) || 0;
 
 
     const totalText =
@@ -945,33 +983,27 @@ function calculateChange() {
 
             totalText
 
-                .replace("Rp", "")
+                .replace(/[^\d]/g, "")
 
-                .replace(/\./g, "")
-
-                .trim()
-
-        );
+        ) || 0;
 
 
     const change =
         payment - total;
 
 
-    const changeAmount =
-        document.getElementById("changeAmount");
-
-
     if (payment === 0) {
 
-        changeAmount.textContent = "Rp 0";
+        changeAmount.textContent =
+            "Rp 0";
 
     }
 
 
     else if (change < 0) {
 
-        changeAmount.textContent = "Uang kurang";
+        changeAmount.textContent =
+            "Uang kurang";
 
     }
 
@@ -2137,7 +2169,7 @@ let html5QrCode = null;
 // MULAI SCANNER
 // ===============================
 
-function startBarcodeScanner() {
+async function startBarcodeScanner() {
 
     const scannerContainer =
         document.getElementById("scannerContainer");
@@ -2166,7 +2198,6 @@ function startBarcodeScanner() {
 
     scannerContainer.style.display = "block";
 
-
     reader.innerHTML = "";
 
 
@@ -2174,44 +2205,43 @@ function startBarcodeScanner() {
         new Html5Qrcode("reader");
 
 
-    html5QrCode.start(
+    try {
 
-        {
-            facingMode: "environment"
-        },
+        await html5QrCode.start(
 
-        {
-            fps: 10,
+            {
+                facingMode: "environment"
+            },
 
-            qrbox: {
-                width: 250,
-                height: 150
+            {
+                fps: 10,
+
+                qrbox: {
+                    width: 250,
+                    height: 150
+                }
+
+            },
+
+            function(decodedText) {
+
+                findProductByBarcode(decodedText);
+
+                stopBarcodeScanner();
+
+            },
+
+            function(errorMessage) {
+
+                // Abaikan error sementara
+
             }
 
-        },
+        );
 
-        function(decodedText) {
+    }
 
-            // Barcode berhasil dibaca
-
-            findProductByBarcode(decodedText);
-
-
-            // Tutup kamera
-
-            stopBarcodeScanner();
-
-        },
-
-        function(errorMessage) {
-
-            // Error sementara diabaikan
-
-        }
-
-    )
-
-    .catch(function(error) {
+    catch (error) {
 
         console.error(
             "Kamera gagal dibuka:",
@@ -2224,7 +2254,7 @@ function startBarcodeScanner() {
             error.message
         );
 
-    });
+    }
 
 }
 
@@ -2369,5 +2399,22 @@ function importData(event) {
     // 1 = Gabungkan Data
     // 2 = Ganti Semua Data
     // 3 = Batal
+
+}
+
+// ===============================
+// PEMBAYARAN CEPAT
+// ===============================
+
+function setQuickPayment(amount) {
+
+    const paymentInput =
+        document.getElementById("paymentAmount");
+
+
+    paymentInput.value = amount;
+
+
+    calculateChange();
 
 }
