@@ -2433,131 +2433,26 @@ function exportData() {
 
 
 // ===============================
+// EXPORT DATA
+// ===============================
+
+function exportData() {
+
+    // kode export lama
+
+}
+
+
+// ===============================
 // IMPORT DATA
 // ===============================
 
 function importData(event) {
 
-    const file =
-        event.target.files[0];
-
-
-    if (!file) {
-
-        return;
-
-    }
-
-
-    const reader =
-        new FileReader();
-
-
-    reader.onload = function(event) {
-
-        try {
-
-            const backupData =
-                JSON.parse(event.target.result);
-
-
-            if (
-
-                !backupData.products ||
-
-                !backupData.transactions
-
-            ) {
-
-                alert(
-                    "File backup tidak valid!"
-                );
-
-                return;
-
-            }
-
-
-            const confirmImport =
-                confirm(
-
-                    "Data lama di perangkat ini akan diganti dengan data backup. Lanjutkan?"
-
-                );
-
-
-            if (!confirmImport) {
-
-                return;
-
-            }
-
-
-            // Masukkan data backup
-
-            products =
-                backupData.products;
-
-
-            transactions =
-                backupData.transactions;
-
-
-            // Simpan ke perangkat
-
-            localStorage.setItem(
-
-                "products",
-
-                JSON.stringify(products)
-
-            );
-
-
-            localStorage.setItem(
-
-                "transactions",
-
-                JSON.stringify(transactions)
-
-            );
-
-
-            // Perbarui tampilan
-
-            displayProducts();
-
-            displayCashierProducts();
-
-            updateDashboard();
-
-
-            alert(
-                "Data berhasil diimport!"
-            );
-
-
-        }
-
-        catch (error) {
-
-            alert(
-                "File backup tidak dapat dibaca!"
-            );
-
-
-            console.error(error);
-
-        }
-
-    };
-
-
-    reader.readAsText(file);
-
-
-    // Reset input file
-
-    event.target.value = "";
+    // kode import baru
+    // yang memiliki pilihan:
+    // 1 = Gabungkan Data
+    // 2 = Ganti Semua Data
+    // 3 = Batal
 
 }
