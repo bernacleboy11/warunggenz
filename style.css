@@ -2553,4 +2553,23 @@ td {
 
 }
 
+#scannerContainer {
+    width: 100%;
+    margin-top: 15px;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#reader {
+    width: 100% !important;
+    min-height: 300px;
+}
+
+#reader video {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+}
+
 
