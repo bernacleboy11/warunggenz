@@ -2,11 +2,19 @@
     "name": "Warung GENZ",
     "short_name": "Warung GENZ",
     "description": "Aplikasi kasir dan manajemen stok warung",
-    "start_url": "./index.html",
+
+    "start_url": "./",
+
+    "scope": "./",
+
     "display": "standalone",
+
     "background_color": "#f5f7fb",
+
     "theme_color": "#16a34a",
+
     "orientation": "portrait",
+
     "icons": [
         {
             "src": "logo.png",

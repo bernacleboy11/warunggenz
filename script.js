@@ -2388,17 +2388,225 @@ function exportData() {
 
 }
 
-// ===============================
-// IMPORT DATA
-// ===============================
-
 function importData(event) {
 
-    // kode import baru
-    // yang memiliki pilihan:
-    // 1 = Gabungkan Data
-    // 2 = Ganti Semua Data
-    // 3 = Batal
+    const file =
+        event.target.files[0];
+
+
+    if (!file) {
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(e) {
+
+        try {
+
+            const importedData =
+                JSON.parse(e.target.result);
+
+
+            if (
+
+                !importedData.products ||
+
+                !Array.isArray(
+
+                    importedData.products
+
+                )
+
+            ) {
+
+                alert(
+
+                    "File backup tidak valid!"
+
+                );
+
+                return;
+
+            }
+
+
+            const choice =
+                prompt(
+
+                    "Pilih tindakan:\n\n" +
+
+                    "1 = Gabungkan Data\n" +
+
+                    "2 = Ganti Semua Data\n" +
+
+                    "3 = Batal"
+
+                );
+
+
+            // Batal
+
+            if (
+
+                choice === "3" ||
+
+                choice === null
+
+            ) {
+
+                return;
+
+            }
+
+
+            // Ganti semua data
+
+            if (choice === "2") {
+
+                products =
+                    importedData.products;
+
+
+                localStorage.setItem(
+
+                    "products",
+
+                    JSON.stringify(products)
+
+                );
+
+
+                alert(
+
+                    "Semua data berhasil diganti!"
+
+                );
+
+            }
+
+
+            // Gabungkan data
+
+            else if (choice === "1") {
+
+
+                importedData.products.forEach(
+
+                    function(importedProduct) {
+
+
+                        const existingProduct =
+
+                            products.find(
+
+                                function(product) {
+
+                                    return (
+
+                                        product.barcode ===
+
+                                        importedProduct.barcode
+
+                                    );
+
+                                }
+
+                            );
+
+
+                        if (existingProduct) {
+
+
+                            existingProduct.stock +=
+
+                                importedProduct.stock;
+
+                        }
+
+
+                        else {
+
+                            products.push(
+
+                                importedProduct
+
+                            );
+
+                        }
+
+                    }
+
+                );
+
+
+                localStorage.setItem(
+
+                    "products",
+
+                    JSON.stringify(products)
+
+                );
+
+
+                alert(
+
+                    "Data berhasil digabungkan!"
+
+                );
+
+            }
+
+
+            else {
+
+                alert(
+
+                    "Pilihan tidak valid!"
+
+                );
+
+                return;
+
+            }
+
+
+            displayProducts();
+
+            displayCashierProducts();
+
+            updateDashboard();
+
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+
+            alert(
+
+                "File tidak dapat dibaca!"
+
+            );
+
+        }
+
+    };
+
+
+    reader.readAsText(file);
+
+
+    // Reset input file
+
+    event.target.value = "";
 
 }
 

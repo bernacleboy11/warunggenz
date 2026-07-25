@@ -1,123 +1,136 @@
-const CACHE_NAME = "warung-genz-v1";
+const CACHE_NAME = "warung-genz-v2";
 
-
-const FILES_TO_CACHE = [
-
+const APP_FILES = [
     "./",
-
     "./index.html",
-
     "./style.css",
-
     "./script.js",
-
-    "./manifest.json"
-
+    "./manifest.json",
+    "./logo.png"
 ];
 
 
-self.addEventListener(
+// ===============================
+// INSTALL
+// ===============================
 
-    "install",
+self.addEventListener("install", function(event) {
 
-    function(event) {
+    event.waitUntil(
 
+        caches.open(CACHE_NAME)
 
-        event.waitUntil(
+            .then(function(cache) {
 
-            caches.open(CACHE_NAME)
+                return cache.addAll(APP_FILES);
 
-                .then(function(cache) {
+            })
 
-                    return cache.addAll(
+    );
 
-                        FILES_TO_CACHE
+    self.skipWaiting();
 
-                    );
-
-                })
-
-        );
-
-    }
-
-);
+});
 
 
-self.addEventListener(
+// ===============================
+// AKTIFKAN SERVICE WORKER BARU
+// ===============================
 
-    "activate",
+self.addEventListener("activate", function(event) {
 
-    function(event) {
+    event.waitUntil(
+
+        caches.keys().then(function(cacheNames) {
+
+            return Promise.all(
+
+                cacheNames
+
+                    .filter(function(cacheName) {
+
+                        return (
+
+                            cacheName !== CACHE_NAME
+
+                        );
+
+                    })
+
+                    .map(function(cacheName) {
+
+                        return caches.delete(
+
+                            cacheName
+
+                        );
+
+                    })
+
+            );
+
+        })
+
+    );
+
+    self.clients.claim();
+
+});
 
 
-        event.waitUntil(
+// ===============================
+// MODE OFFLINE
+// ===============================
 
-            caches.keys()
+self.addEventListener("fetch", function(event) {
 
-                .then(function(cacheNames) {
+    event.respondWith(
 
+        caches.match(event.request)
 
-                    return Promise.all(
+            .then(function(cachedResponse) {
 
-                        cacheNames.map(function(cacheName) {
+                if (cachedResponse) {
 
+                    return cachedResponse;
 
-                            if (
-
-                                cacheName !== CACHE_NAME
-
-                            ) {
+                }
 
 
-                                return caches.delete(
+                return fetch(event.request)
 
-                                    cacheName
+                    .then(function(networkResponse) {
 
-                                );
+                        return networkResponse;
+
+                    })
+
+                    .catch(function() {
+
+                        return new Response(
+
+                            "Aplikasi sedang offline",
+
+                            {
+
+                                status: 503,
+
+                                headers: {
+
+                                    "Content-Type":
+
+                                    "text/plain"
+
+                                }
 
                             }
 
-                        })
+                        );
 
-                    );
+                    });
 
-                })
+            })
 
-        );
+    );
 
-    }
-
-);
-
-
-self.addEventListener(
-
-    "fetch",
-
-    function(event) {
-
-
-        event.respondWith(
-
-            caches.match(event.request)
-
-                .then(function(response) {
-
-
-                    if (response) {
-
-                        return response;
-
-                    }
-
-
-                    return fetch(event.request);
-
-                })
-
-        );
-
-    }
-
-);
+});

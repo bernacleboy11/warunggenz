@@ -6,6 +6,8 @@
 
     <title>Warung GENZ</title>
 
+    <link rel="icon" type="image/png" href="logo.png">
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
@@ -1294,6 +1296,22 @@
     </div>
 
 </div>
+
+    <script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", function() {
+
+        navigator.serviceWorker.register(
+            "./service-worker.js"
+        );
+
+    });
+
+}
+
+</script>
     
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
