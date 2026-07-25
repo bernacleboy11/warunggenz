@@ -2626,3 +2626,155 @@ function setQuickPayment(amount) {
     calculateChange();
 
 }
+
+function changePaymentMethod() {
+
+    const method =
+        document.getElementById(
+            "paymentMethod"
+        ).value;
+
+
+    const qrisPayment =
+        document.getElementById(
+            "qrisPayment"
+        );
+
+
+    const cashPayment =
+        document.getElementById(
+            "cashPayment"
+        );
+
+
+    const changeBox =
+        document.querySelector(
+            ".change-box"
+        );
+
+
+    if (method === "qris") {
+
+        qrisPayment.style.display =
+            "block";
+
+
+        cashPayment.style.display =
+            "none";
+
+
+        if (changeBox) {
+
+            changeBox.style.display =
+                "none";
+
+        }
+
+    }
+
+    else {
+
+        qrisPayment.style.display =
+            "none";
+
+
+        cashPayment.style.display =
+            "block";
+
+
+        if (changeBox) {
+
+            changeBox.style.display =
+                "flex";
+
+        }
+
+    }
+
+}
+
+function selectPaymentMethod(method) {
+
+    const buttons =
+        document.querySelectorAll(
+            ".payment-method-button"
+        );
+
+
+    buttons.forEach(function(button) {
+
+        button.classList.remove("active");
+
+    });
+
+
+    const selectedButton =
+        document.querySelector(
+            `[data-method="${method}"]`
+        );
+
+
+    if (selectedButton) {
+
+        selectedButton.classList.add("active");
+
+    }
+
+
+    const qrisPayment =
+        document.getElementById(
+            "qrisPayment"
+        );
+
+
+    const cashPayment =
+        document.getElementById(
+            "cashPayment"
+        );
+
+
+    const changeBox =
+        document.querySelector(
+            ".change-box"
+        );
+
+
+    if (method === "qris") {
+
+        qrisPayment.style.display =
+            "block";
+
+
+        cashPayment.style.display =
+            "none";
+
+
+        if (changeBox) {
+
+            changeBox.style.display =
+                "none";
+
+        }
+
+    }
+
+    else {
+
+        qrisPayment.style.display =
+            "none";
+
+
+        cashPayment.style.display =
+            "block";
+
+
+        if (changeBox) {
+
+            changeBox.style.display =
+                "flex";
+
+        }
+
+    }
+
+}

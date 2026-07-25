@@ -2640,3 +2640,119 @@ td {
     background: #15803d;
 
 }
+
+.qris-image {
+    display: block;
+    width: 250px;
+    max-width: 100%;
+    height: auto;
+    margin: 15px auto;
+    border-radius: 10px;
+}
+
+.payment-method-buttons {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin: 10px 0 20px;
+
+}
+
+
+.payment-method-button {
+
+    border: 2px solid #e5e7eb;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    padding: 14px 10px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+
+}
+
+
+.payment-method-button:hover {
+
+    border-color: #16a34a;
+
+}
+
+
+.payment-method-button.active {
+
+    background: #f0fdf4;
+
+    color: #16a34a;
+
+    border-color: #16a34a;
+
+}
+
+
+.payment-method-button i {
+
+    font-size: 18px;
+
+}
+
+.qris-instruction {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin: 12px auto 0;
+
+    padding: 10px 14px;
+
+    max-width: 320px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    text-align: center;
+
+}
+
+
+.qris-instruction i {
+
+    color: #16a34a;
+
+    font-size: 16px;
+
+}
