@@ -689,7 +689,9 @@ function addToCart(product) {
 
             quantity: 1,
 
-            stock: product.stock
+            stock: product.stock,
+
+            discount: 0
 
         });
 
@@ -763,19 +765,30 @@ function displayCart() {
 
     cart.forEach(function(item, index) {
 
-
-        const subtotal =
-            item.price * item.quantity;
-
-
-        total += subtotal;
+    // Total harga sebelum diskon
+    const grossTotal =
+        item.price * item.quantity;
 
 
-        itemCount += item.quantity;
+    // Diskon untuk total produk ini
+    const discountAmount =
+        item.discount || 0;
 
 
-        const cartItem =
-            document.createElement("div");
+    // Total setelah diskon
+    const subtotal =
+        grossTotal - discountAmount;
+
+
+    total += subtotal;
+
+
+    // Hitung jumlah item
+    itemCount += item.quantity;
+
+
+    const cartItem =
+        document.createElement("div");
 
 
         cartItem.className = "cart-item";
@@ -792,6 +805,36 @@ function displayCart() {
                     Rp ${formatRupiah(item.price)}
 
                 </p>
+
+                <div class="discount-control">
+
+    <label>
+
+        <i class="fa-solid fa-tag"></i>
+
+        Diskon
+
+    </label>
+
+    <div class="discount-input-wrapper">
+
+        <span>Rp</span>
+
+        <input
+
+            type="number"
+
+            min="0"
+
+            value="${item.discount || 0}"
+
+            onchange="updateItemDiscount(${index}, this.value)"
+
+        >
+
+    </div>
+
+</div>
 
             </div>
 
@@ -867,6 +910,43 @@ function displayCart() {
 
 
     calculateChange();
+
+}
+
+// ===============================
+// UPDATE DISKON PRODUK
+// ===============================
+
+function updateItemDiscount(index, value) {
+
+
+    let discount =
+        Number(value) || 0;
+
+
+    // Diskon tidak boleh negatif
+
+    if (discount < 0) {
+
+        discount = 0;
+
+    }
+
+
+    // Diskon tidak boleh melebihi harga produk
+
+    if (discount > cart[index].price) {
+
+        discount = cart[index].price;
+
+    }
+
+
+    cart[index].discount =
+        discount;
+
+
+    displayCart();
 
 }
 
@@ -1092,17 +1172,23 @@ function completeTransaction() {
 
     return {
 
-        name: item.name,
+    name: item.name,
 
-        price: item.price,
+    price: item.price,
 
-        buyPrice: product
-            ? product.buyPrice
-            : 0,
+    buyPrice: product
+        ? product.buyPrice
+        : 0,
 
-        quantity: item.quantity
+    quantity: item.quantity,
 
-    };
+    discount: item.discount || 0,
+
+    subtotal:
+        (item.price * item.quantity) -
+        (item.discount || 0)
+
+};
 
 }),
 
@@ -1787,8 +1873,16 @@ function showReceipt(transaction) {
     transaction.items.forEach(function(item) {
 
 
-        const subtotal =
+        const grossTotal =
             item.price * item.quantity;
+
+
+        const discount =
+            item.discount || 0;
+
+
+        const subtotal =
+            grossTotal - discount;
 
 
         const itemElement =
@@ -1801,26 +1895,44 @@ function showReceipt(transaction) {
 
         itemElement.innerHTML = `
 
-            <span class="receipt-item-name">
+    <span class="receipt-item-name">
 
-                ${item.name}
+        ${item.name}
+
+        <br>
+
+        ${item.quantity} x
+
+        Rp ${formatRupiah(item.price)}
+
+        ${
+            discount > 0
+            ? `
 
                 <br>
 
-                ${item.quantity} x
+                <small class="receipt-discount">
 
-                Rp ${formatRupiah(item.price)}
+                    Diskon:
+                    -Rp ${formatRupiah(discount)}
 
-            </span>
+                </small>
+
+              `
+            : ""
+
+        }
+
+    </span>
 
 
-            <strong>
+    <strong>
 
-                Rp ${formatRupiah(subtotal)}
+        Rp ${formatRupiah(subtotal)}
 
-            </strong>
+    </strong>
 
-        `;
+`;
 
 
         receiptItems.appendChild(itemElement);
