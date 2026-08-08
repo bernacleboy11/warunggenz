@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#16a34a"
+    >
+
+    <title>Login | Warung GENZ</title>
+
+    <!-- FAVICON -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="icon-192.png"
+    >
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- LOGIN CSS -->
+    <link
+        rel="stylesheet"
+        href="css/login.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         LOGIN CONTAINER
+    ====================================== -->
+
+    <main class="login-container">
+
+
+        <!-- =================================
+             LOGIN CARD
+        ================================== -->
+
+        <div class="login-card">
+
+
+            <!-- LOGO -->
+
+            <div class="login-logo">
+
+                <div class="logo-icon">
+
+                    <i class="fa-solid fa-store"></i>
+
+                </div>
+
+                <h1>
+                    Warung GENZ
+                </h1>
+
+                <p>
+                    Aplikasi Kasir & Manajemen Stok
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================
+                 LOGIN FORM
+            ================================== -->
+
+            <form id="loginForm">
+
+
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Masukkan username"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Masukkan password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-toggle"
+                            aria-label="Tampilkan password"
+                        >
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- REMEMBER -->
+
+                <div class="login-options">
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                        >
+
+                        <span>
+                            Ingat saya
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- ERROR -->
+
+                <div
+                    id="loginError"
+                    class="login-error"
+                >
+
+                    <i class="fa-solid fa-circle-exclamation"></i>
+
+                    <span>
+                        Username atau password salah.
+                    </span>
+
+                </div>
+
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+
+                    <i class="fa-solid fa-right-to-bracket"></i>
+
+                    <span>
+                        Masuk
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- =================================
+                 AKUN DEMO
+            ================================== -->
+
+            <div class="demo-account">
+
+                <div class="demo-title">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    Akun Demo
+
+                </div>
+
+
+                <div class="demo-row">
+
+                    <span>
+                        Admin
+                    </span>
+
+                    <button
+                        type="button"
+                        onclick="fillLogin('admin','admin123')"
+                    >
+                        Gunakan
+                    </button>
+
+                </div>
+
+
+                <div class="demo-row">
+
+                    <span>
+                        Kasir
+                    </span>
+
+                    <button
+                        type="button"
+                        onclick="fillLogin('kasir','kasir123')"
+                    >
+                        Gunakan
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="login-footer">
+
+                <span>
+                    © 2026 Warung GENZ
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- LOGIN JS -->
+
+    <script src="js/login.js"></script>
+
+
+</body>
+
+</html>
