@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Warung GENZ</title>
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#16a34a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-store"></i>
+            <span>Warung GENZ</span>
+        </div>
+        <nav>
+            <a href="dashboard.html" class="menu active">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="transaksi.html" class="menu">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Transaksi</span>
+            </a>
+            <a href="produk.html" class="menu">
+                <i class="fa-solid fa-box"></i>
+                <span>Produk</span>
+            </a>
+            <a href="stok.html" class="menu">
+                <i class="fa-solid fa-warehouse"></i>
+                <span>Stok</span>
+            </a>
+            <a href="laporan.html" class="menu">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span>Laporan</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="menu">
+                <i class="fa-solid fa-gear"></i>
+                <span>Pengaturan</span>
+            </a>
+            <a href="#" class="menu">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Keluar</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- KONTEN UTAMA -->
+    <main class="main-content">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-left">
+                <button id="menuButton" class="menu-button" type="button" onclick="toggleSidebar()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h2 id="page-title">Dashboard</h2>
+            </div>
+            <div class="user-profile">
+                <div class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div>
+                    <strong>Pemilik Warung</strong>
+                    <small>Admin</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboard" class="page active-page">
+            <div class="welcome">
+                <div>
+                    <h1>Selamat Datang 👋</h1>
+                    <p>Kelola warung Anda dengan lebih mudah.</p>
+                </div>
+                <i class="fa-solid fa-store"></i>
+            </div>
+
+            <!-- KARTU STATISTIK -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                    </div>
+                    <div>
+                        <p>Penjualan Hari Ini</p>
+                        <h2 id="todaySales">Rp 0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <div>
+                        <p>Total Transaksi</p>
+                        <h2 id="totalTransactions">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+                    <div>
+                        <p>Total Produk</p>
+                        <h2 id="totalProducts">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon red">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <p>Stok Menipis</p>
+                        <h2 id="lowStock">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENU CEPAT -->
+            <div class="section-title">
+                <h2>Akses Cepat</h2>
+            </div>
+
+            <div class="quick-menu">
+                <div class="quick-card" onclick="window.location.href='transaksi.html'">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <h3>Mulai Transaksi</h3>
+                    <p>Jual produk kepada pelanggan</p>
+                </div>
+
+                <div class="quick-card" onclick="window.location.href='produk.html'">
+                    <i class="fa-solid fa-box-open"></i>
+                    <h3>Kelola Produk</h3>
+                    <p>Tambah dan edit produk</p>
+                </div>
+
+                <div class="quick-card" onclick="window.location.href='stok.html'">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <h3>Kelola Stok</h3>
+                    <p>Periksa stok barang</p>
+                </div>
+
+                <div class="quick-card" onclick="window.location.href='laporan.html'">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <h3>Lihat Laporan</h3>
+                    <p>Periksa laporan penjualan</p>
+                </div>
+            </div>
+
+            <!-- TRANSAKSI TERBARU -->
+            <div class="recent-section">
+                <div class="section-title">
+                    <h2>Transaksi Terbaru</h2>
+                    <button onclick="window.location.href='transaksi.html'">Lihat Semua</button>
+                </div>
+                <div id="recentTransactions">
+                    <!-- Data transaksi muncul melalui JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker.register("../service-worker.js");
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

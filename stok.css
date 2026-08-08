@@ -1,0 +1,1043 @@
+/* =========================================================
+   WARUNG GENZ
+   STOK CSS
+========================================================= */
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.stock-summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.stock-summary-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    min-width: 0;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #eef2f7;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.stock-summary-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(15, 23, 42, 0.08);
+
+}
+
+
+.stock-summary-card p {
+
+    margin: 0 0 5px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+}
+
+
+.stock-summary-card h2 {
+
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 24px;
+
+}
+
+
+.stock-summary-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 50px;
+
+    height: 50px;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    font-size: 21px;
+
+}
+
+
+.stock-summary-icon.blue {
+
+    background: #dbeafe;
+
+    color: #2563eb;
+
+}
+
+
+.stock-summary-icon.green {
+
+    background: #dcfce7;
+
+    color: #16a34a;
+
+}
+
+
+.stock-summary-icon.orange {
+
+    background: #ffedd5;
+
+    color: #ea580c;
+
+}
+
+
+.stock-summary-icon.red {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+}
+
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.stock-toolbar {
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 16px;
+
+    margin-bottom: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #eef2f7;
+
+    border-radius: 15px;
+
+}
+
+
+.stock-toolbar .search-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    max-width: 420px;
+
+}
+
+
+.stock-toolbar .search-box i {
+
+    color: #64748b;
+
+}
+
+
+.stock-toolbar input {
+
+    width: 100%;
+
+    padding: 11px 13px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #f8fafc;
+
+    font-size: 14px;
+
+}
+
+
+.stock-toolbar input:focus {
+
+    border-color: #16a34a;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(22, 163, 74, 0.10);
+
+}
+
+
+
+/* =========================================================
+   SLIDER WRAPPER
+========================================================= */
+
+.stock-slider-wrapper {
+
+    position: relative;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================================
+   SLIDER VIEWPORT
+========================================================= */
+
+.stock-slider {
+
+    display: flex;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+
+    -ms-overflow-style: none;
+
+}
+
+
+.stock-slider::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+
+/* =========================================================
+   SATU HALAMAN
+   DESKTOP = 9 PRODUK
+========================================================= */
+
+.stock-page {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    grid-template-rows:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    flex: 0 0 100%;
+
+    width: 100%;
+
+    min-width: 100%;
+
+    box-sizing: border-box;
+
+    scroll-snap-align: start;
+
+}
+
+
+
+/* =========================================================
+   STOCK CARD
+========================================================= */
+
+.stock-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+
+    min-height: 175px;
+
+    box-sizing: border-box;
+
+    padding: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 14px
+        rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.stock-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #bbf7d0;
+
+    box-shadow:
+        0 10px 25px
+        rgba(15, 23, 42, 0.08);
+
+}
+
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.stock-card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.stock-product-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 44px;
+
+    height: 44px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: #f0fdf4;
+
+    color: #16a34a;
+
+    font-size: 18px;
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.stock-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+
+.status-safe {
+
+    background: #dcfce7;
+
+    color: #16a34a;
+
+}
+
+
+.status-low {
+
+    background: #ffedd5;
+
+    color: #ea580c;
+
+}
+
+
+.status-empty {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+}
+
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.stock-card-body {
+
+    min-width: 0;
+
+}
+
+
+.stock-card-body h3 {
+
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 16px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.stock-category {
+
+    margin: 5px 0 14px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   STOCK VALUE
+========================================================= */
+
+.stock-value {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding-top: 11px;
+
+    border-top:
+        1px solid #f1f5f9;
+
+}
+
+
+.stock-value span {
+
+    color: #64748b;
+
+    font-size: 12px;
+
+}
+
+
+.stock-value strong {
+
+    color: #0f172a;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+}
+
+
+.stock-value small {
+
+    color: #64748b;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.stock-card-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: auto;
+
+    padding-top: 11px;
+
+    border-top:
+        1px solid #f1f5f9;
+
+}
+
+
+.stock-card-footer span {
+
+    color: #64748b;
+
+    font-size: 11px;
+
+}
+
+
+.stock-card-footer strong {
+
+    color: #16a34a;
+
+    font-size: 12px;
+
+}
+
+
+
+/* =========================================================
+   NAVIGATION BUTTON
+========================================================= */
+
+.stock-nav {
+
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    box-shadow:
+        0 5px 18px
+        rgba(15, 23, 42, 0.15);
+
+    cursor: pointer;
+
+    transform: translateY(-50%);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.stock-nav:hover {
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+}
+
+
+.stock-nav:disabled {
+
+    opacity: 0.35;
+
+    pointer-events: none;
+
+}
+
+
+.stock-prev {
+
+    left: -20px;
+
+}
+
+
+.stock-next {
+
+    right: -20px;
+
+}
+
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.stock-pagination {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 18px;
+
+}
+
+
+.stock-page-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #cbd5e1;
+
+    cursor: pointer;
+
+    transition:
+        width 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.stock-page-dot.active {
+
+    width: 22px;
+
+    border-radius: 10px;
+
+    background: #16a34a;
+
+}
+
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 220px;
+
+    padding: 30px;
+
+    background: #ffffff;
+
+    border: 1px dashed #cbd5e1;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+}
+
+
+.empty-state i {
+
+    margin-bottom: 12px;
+
+    color: #94a3b8;
+
+    font-size: 42px;
+
+}
+
+
+.empty-state h3 {
+
+    margin: 0 0 6px;
+
+    color: #334155;
+
+}
+
+
+.empty-state p {
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .stock-summary {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .stock-page {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        grid-template-rows:
+            repeat(3, minmax(0, 1fr));
+
+    }
+
+}
+
+
+
+/* =========================================================
+   HP
+   6 PRODUK / HALAMAN
+   2 x 3
+========================================================= */
+
+@media (max-width: 600px) {
+
+
+    .stock-summary {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+
+        margin-bottom: 14px;
+
+    }
+
+
+    .stock-summary-card {
+
+        gap: 9px;
+
+        padding: 13px;
+
+        border-radius: 13px;
+
+    }
+
+
+    .stock-summary-icon {
+
+        width: 38px;
+
+        height: 38px;
+
+        border-radius: 10px;
+
+        font-size: 15px;
+
+    }
+
+
+    .stock-summary-card p {
+
+        font-size: 10px;
+
+    }
+
+
+    .stock-summary-card h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .stock-toolbar {
+
+        padding: 11px;
+
+        margin-bottom: 14px;
+
+    }
+
+
+    .stock-page {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        grid-template-rows:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 10px;
+
+    }
+
+
+    .stock-card {
+
+        min-height: 150px;
+
+        padding: 12px;
+
+        border-radius: 13px;
+
+    }
+
+
+    .stock-product-icon {
+
+        width: 34px;
+
+        height: 34px;
+
+        border-radius: 9px;
+
+        font-size: 14px;
+
+    }
+
+
+    .stock-status {
+
+        padding: 5px 7px;
+
+        font-size: 8px;
+
+    }
+
+
+    .stock-card-body h3 {
+
+        font-size: 12px;
+
+    }
+
+
+    .stock-category {
+
+        margin-bottom: 9px;
+
+        font-size: 9px;
+
+    }
+
+
+    .stock-value {
+
+        padding-top: 8px;
+
+    }
+
+
+    .stock-value span {
+
+        font-size: 9px;
+
+    }
+
+
+    .stock-value strong {
+
+        font-size: 19px;
+
+    }
+
+
+    .stock-value small {
+
+        font-size: 9px;
+
+    }
+
+
+    .stock-card-footer {
+
+        padding-top: 8px;
+
+    }
+
+
+    .stock-card-footer span {
+
+        font-size: 8px;
+
+    }
+
+
+    .stock-card-footer strong {
+
+        font-size: 9px;
+
+    }
+
+
+    .stock-nav {
+
+        width: 34px;
+
+        height: 34px;
+
+    }
+
+
+    .stock-prev {
+
+        left: -10px;
+
+    }
+
+
+    .stock-next {
+
+        right: -10px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   HP KECIL
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .stock-card {
+
+        min-height: 140px;
+
+        padding: 9px;
+
+    }
+
+
+    .stock-status {
+
+        padding: 4px 5px;
+
+        font-size: 7px;
+
+    }
+
+
+    .stock-card-body h3 {
+
+        font-size: 11px;
+
+    }
+
+
+    .stock-value strong {
+
+        font-size: 17px;
+
+    }
+
+}

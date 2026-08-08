@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Stok | Warung GENZ</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- CSS Utama -->
+    <link
+        rel="stylesheet"
+        href="../css/common.css"
+    >
+
+    <!-- CSS Stok -->
+    <link
+        rel="stylesheet"
+        href="../css/stok.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-store"></i>
+
+        <span>Warung GENZ</span>
+
+    </div>
+
+
+    <nav>
+
+        <a
+            href="dashboard.html"
+            class="menu"
+        >
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+        </a>
+
+
+        <a
+            href="transaksi.html"
+            class="menu"
+        >
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Transaksi</span>
+        </a>
+
+
+        <a
+            href="produk.html"
+            class="menu"
+        >
+            <i class="fa-solid fa-box"></i>
+            <span>Produk</span>
+        </a>
+
+
+        <a
+            href="stok.html"
+            class="menu active"
+        >
+            <i class="fa-solid fa-warehouse"></i>
+            <span>Stok</span>
+        </a>
+
+
+        <a
+            href="laporan.html"
+            class="menu"
+        >
+            <i class="fa-solid fa-file-invoice"></i>
+            <span>Laporan</span>
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <a
+            href="#"
+            class="menu"
+        >
+            <i class="fa-solid fa-gear"></i>
+            <span>Pengaturan</span>
+        </a>
+
+
+        <a
+            href="#"
+            class="menu"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Keluar</span>
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="main-content">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="header-left">
+
+            <button
+                id="menuButton"
+                class="menu-button"
+                type="button"
+                onclick="toggleSidebar()"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <h2 id="page-title">
+                Stok
+            </h2>
+
+        </div>
+
+
+        <div class="user-profile">
+
+            <div class="user-icon">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Pemilik Warung
+                </strong>
+
+                <small>
+                    Admin
+                </small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         PAGE
+    ========================================= -->
+
+    <section
+        id="stok"
+        class="page active-page"
+    >
+
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Stok Barang
+                </h1>
+
+                <p>
+                    Kelola dan pantau persediaan barang
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             RINGKASAN
+        ====================================== -->
+
+        <div class="stock-summary">
+
+
+            <div class="stock-summary-card">
+
+                <div class="stock-summary-icon blue">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                </div>
+
+                <div>
+
+                    <p>Total Produk</p>
+
+                    <h2 id="stockTotalProducts">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stock-summary-card">
+
+                <div class="stock-summary-icon green">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+                <div>
+
+                    <p>Stok Aman</p>
+
+                    <h2 id="stockSafe">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stock-summary-card">
+
+                <div class="stock-summary-icon orange">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                </div>
+
+                <div>
+
+                    <p>Stok Menipis</p>
+
+                    <h2 id="stockLow">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stock-summary-card">
+
+                <div class="stock-summary-icon red">
+
+                    <i class="fa-solid fa-ban"></i>
+
+                </div>
+
+                <div>
+
+                    <p>Stok Habis</p>
+
+                    <h2 id="stockEmpty">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             SEARCH
+        ====================================== -->
+
+        <div class="stock-toolbar">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="stockSearch"
+                    placeholder="Cari produk..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             STOCK SLIDER
+        ====================================== -->
+
+        <div class="stock-slider-wrapper">
+
+
+            <!-- TOMBOL KIRI -->
+
+            <button
+                type="button"
+                id="stockPrev"
+                class="stock-nav stock-prev"
+                aria-label="Produk sebelumnya"
+            >
+
+                <i class="fa-solid fa-chevron-left"></i>
+
+            </button>
+
+
+
+            <!-- VIEWPORT -->
+
+            <div
+                class="stock-slider"
+                id="stockSlider"
+            >
+
+                <!-- HALAMAN AKAN DIBUAT JAVASCRIPT -->
+
+            </div>
+
+
+
+            <!-- TOMBOL KANAN -->
+
+            <button
+                type="button"
+                id="stockNext"
+                class="stock-nav stock-next"
+                aria-label="Produk berikutnya"
+            >
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =====================================
+             PAGINATION
+        ====================================== -->
+
+        <div
+            id="stockPagination"
+            class="stock-pagination"
+        ></div>
+
+
+
+        <!-- =====================================
+             EMPTY STATE
+        ====================================== -->
+
+        <div
+            id="emptyStock"
+            class="empty-state"
+        >
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <h3>
+                Belum Ada Data Stok
+            </h3>
+
+            <p>
+                Tambahkan produk terlebih dahulu
+                melalui menu Produk.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================
+     SERVICE WORKER
+========================================= -->
+
+<script>
+
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                navigator.serviceWorker.register(
+                    "./service-worker.js"
+                );
+
+            }
+        );
+
+    }
+
+</script>
+
+
+
+<!-- HTML5 QR CODE -->
+
+<script
+    src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"
+></script>
+
+
+
+<!-- STOK JS -->
+
+<script
+    src="../js/stok.js"
+></script>
+
+
+</body>
+
+</html>

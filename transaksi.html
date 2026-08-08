@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi - Warung GENZ</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/transaksi.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#16a34a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-store"></i>
+            <span>Warung GENZ</span>
+        </div>
+        <nav>
+            <a href="dashboard.html" class="menu">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="transaksi.html" class="menu active">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Transaksi</span>
+            </a>
+            <a href="produk.html" class="menu">
+                <i class="fa-solid fa-box"></i>
+                <span>Produk</span>
+            </a>
+            <a href="stok.html" class="menu">
+                <i class="fa-solid fa-warehouse"></i>
+                <span>Stok</span>
+            </a>
+            <a href="laporan.html" class="menu">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span>Laporan</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="menu">
+                <i class="fa-solid fa-gear"></i>
+                <span>Pengaturan</span>
+            </a>
+            <a href="#" class="menu">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Keluar</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- KONTEN UTAMA -->
+    <main class="main-content">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-left">
+                <button id="menuButton" class="menu-button" type="button" onclick="toggleSidebar()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h2 id="page-title">Transaksi</h2>
+            </div>
+            <div class="user-profile">
+                <div class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div>
+                    <strong>Pemilik Warung</strong>
+                    <small>Admin</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- TRANSAKSI SECTION -->
+        <section id="transaksi" class="page active-page">
+            <div class="page-header">
+                <div>
+                    <h1>Transaksi Kasir</h1>
+                    <p>Buat transaksi penjualan baru</p>
+                </div>
+                <button class="primary-button" onclick="clearCart()">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Transaksi Baru
+                </button>
+            </div>
+
+            <div class="cashier-container">
+                <!-- BAGIAN PRODUK -->
+                <div class="cashier-products">
+                    <div class="cashier-header">
+                        <div class="cashier-title">
+                            <h2>Pilih Produk</h2>
+                            <p>Pilih produk untuk dimasukkan ke keranjang</p>
+                        </div>
+
+                        <div class="cashier-actions">
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="cashierSearch" placeholder="Cari produk..." onkeyup="displayCashierProducts()">
+                            </div>
+
+                            <button id="scanBarcodeButton" class="scan-button" type="button" onclick="startBarcodeScanner()">
+                                <i class="fa-solid fa-barcode"></i>
+                                <span>Scan Barcode</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <video id="scannerVideo" autoplay playsinline style="display: none; width: 100%;"></video>
+
+                    <div id="scannerContainer" style="display: none;">
+                        <div id="reader"></div>
+                        <button class="stop-scan-button" onclick="stopBarcodeScanner()">
+                            <i class="fa-solid fa-xmark"></i>
+                            Tutup Kamera
+                        </button>
+                    </div>
+
+                    <div id="cashierProductList" class="cashier-product-list">
+                        <!-- Produk akan muncul di sini -->
+                    </div>
+
+                    <div id="emptyCashierProduct" class="empty-state">
+                        <i class="fa-solid fa-box-open"></i>
+                        <h3>Belum Ada Produk</h3>
+                        <p>Tambahkan produk terlebih dahulu melalui menu Produk.</p>
+                    </div>
+                </div>
+
+                <!-- BAGIAN KERANJANG -->
+                <div class="cart-container">
+                    <div class="cart-header">
+                        <h2>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Keranjang
+                        </h2>
+                        <span id="cartCount">0 item</span>
+                    </div>
+
+                    <div id="cartItems" class="cart-items">
+                        <div class="empty-cart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <p>Keranjang masih kosong</p>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary">
+                        <div class="summary-row">
+                            <span>Total Item</span>
+                            <strong id="totalItems">0</strong>
+                        </div>
+
+                        <div class="summary-row total-row">
+                            <span>Total</span>
+                            <strong id="cartTotal">Rp 0</strong>
+                        </div>
+
+                        <div class="payment-group">
+                            <!-- METODE PEMBAYARAN -->
+                            <label>Metode Pembayaran</label>
+                            <div class="payment-method-buttons">
+                                <button type="button" class="payment-method-button active" data-method="cash" onclick="selectPaymentMethod('cash')">
+                                    <i class="fa-solid fa-money-bill-wave"></i>
+                                    <span>Tunai</span>
+                                </button>
+                                <button type="button" class="payment-method-button" data-method="qris" onclick="selectPaymentMethod('qris')">
+                                    <i class="fa-solid fa-qrcode"></i>
+                                    <span>QRIS</span>
+                                </button>
+                            </div>
+
+                            <!-- PEMBAYARAN TUNAI -->
+                            <div id="cashPayment">
+                                <label>Uang Dibayar</label>
+                                <input type="number" id="paymentAmount" placeholder="Masukkan jumlah uang" oninput="calculateChange()">
+
+                                <div class="quick-payment-buttons">
+                                    <button type="button" onclick="setQuickPayment(10000)">Rp 10.000</button>
+                                    <button type="button" onclick="setQuickPayment(20000)">Rp 20.000</button>
+                                    <button type="button" onclick="setQuickPayment(50000)">Rp 50.000</button>
+                                    <button type="button" onclick="setQuickPayment(100000)">Rp 100.000</button>
+                                </div>
+                            </div>
+
+                            <!-- PEMBAYARAN QRIS -->
+                            <div id="qrisPayment" style="display: none;">
+                                <h3>Scan untuk Membayar</h3>
+                                <img src="qris-warung.jpeg" alt="QRIS Warung GENZ" class="qris-image">
+                                <div class="qris-instruction">
+                                    <i class="fa-solid fa-camera"></i>
+                                    <span>Scan QR Code untuk melakukan pembayaran</span>
+                                </div>
+                            </div>
+
+                            <div class="change-box">
+                                <span>Kembalian</span>
+                                <strong id="changeAmount">Rp 0</strong>
+                            </div>
+
+                            <button class="checkout-button" onclick="completeTransaction()">
+                                <i class="fa-solid fa-check"></i>
+                                Selesaikan Transaksi
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL STRUK -->
+    <div id="receiptModal" class="receipt-modal">
+        <div class="receipt-content">
+            <div class="receipt-header">
+                <h2>Struk Transaksi</h2>
+                <button onclick="closeReceipt()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- ISI STRUK -->
+            <div id="receipt">
+                <div class="receipt-shop">
+                    <i class="fa-solid fa-store"></i>
+                    <h2>WARUNG GENZ</h2>
+                    <p>Warung Sembako Anda</p>
+                </div>
+                <div class="receipt-line"></div>
+                <div id="receiptInfo">
+                    <!-- Informasi transaksi -->
+                </div>
+                <div class="receipt-line"></div>
+                <div id="receiptItems">
+                    <!-- Produk transaksi -->
+                </div>
+                <div class="receipt-line"></div>
+                <div class="receipt-total">
+                    <!-- Total pembayaran -->
+                </div>
+                <div class="receipt-footer">
+                    <p>Terima kasih telah berbelanja</p>
+                    <p>Semoga datang kembali 😊</p>
+                </div>
+            </div>
+
+            <div class="receipt-actions">
+                <button class="cancel-button" onclick="closeReceipt()">Tutup</button>
+                <button class="primary-button" onclick="printReceipt()">
+                    <i class="fa-solid fa-print"></i>
+                    Cetak Struk
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker.register("./service-worker.js");
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="../js/transaksi.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+/* ===============================
+   WELCOME BANNER
+================================ */
+.welcome {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: white;
+    border-radius: 18px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.welcome h1 { margin-bottom: 10px; }
+.welcome i { font-size: 70px; opacity: 0.3; }
+
+/* ===============================
+   STATISTIK
+================================ */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+}
+
+.stat-card p {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.stat-card h2 { font-size: 22px; }
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.green { background: #dcfce7; color: #16a34a; }
+.blue { background: #dbeafe; color: #2563eb; }
+.orange { background: #ffedd5; color: #ea580c; }
+.red { background: #fee2e2; color: #dc2626; }
+
+/* ===============================
+   QUICK MENU
+================================ */
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.section-title h2 { font-size: 20px; }
+.section-title button {
+    border: none;
+    background: transparent;
+    color: #16a34a;
+    cursor: pointer;
+}
+
+.quick-menu {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.quick-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+}
+
+.quick-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.quick-card i {
+    color: #16a34a;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.quick-card h3 { margin-bottom: 8px; }
+.quick-card p { color: #6b7280; font-size: 14px; }
+
+/* ===============================
+   RECENT TRANSACTIONS
+================================ */
+.recent-section {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.recent-transaction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.transaction-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #dcfce7;
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transaction-info { flex: 1; }
+.transaction-info strong { display: block; font-size: 14px; margin-bottom: 5px; }
+.transaction-info small { color: #9ca3af; }
+.transaction-price { color: #16a34a; }
+
+/* RESPONSIVE DASHBOARD */
+@media (max-width: 900px) {
+    .stats-container, .quick-menu { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .welcome { padding: 22px; }
+    .welcome i { font-size: 45px; }
+    .stats-container { grid-template-columns: 1fr; }
+    .quick-menu { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .quick-card { padding: 18px; }
+    .quick-card h3 { font-size: 15px; }
+}
